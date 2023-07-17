@@ -4,6 +4,7 @@ import {
   EditNotification,
   Notifications,
   Welcome,
+  createAction,
 } from "./Pages";
 import { Layout } from "./ui";
 
@@ -14,7 +15,11 @@ const routes = [
     children: [
       { path: "/", element: <Welcome /> },
       { path: "/notifications", element: <Notifications /> },
-      { path: "/notifications/create", element: <CreateNotification /> },
+      {
+        path: "/notifications/create",
+        element: <CreateNotification />,
+        action: createAction,
+      },
       { path: "/notifications/:id", element: <EditNotification /> },
     ],
   },

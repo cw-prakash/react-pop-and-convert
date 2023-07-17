@@ -15,7 +15,7 @@ const navLinks = [
 export default function () {
   return (
     <nav className="py-6 shadow-md">
-      <div className="flex justify-between px-8">
+      <div className="flex justify-between px-8 max-w-7xl mx-auto">
         <RouterLink to="/">
           <img src={logo} />
         </RouterLink>
