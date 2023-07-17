@@ -38,7 +38,14 @@ export async function getNotification(id) {
 export async function createNotification() {
   await fakeNetwork();
   let id = Math.random().toString(36).substring(2, 9);
-  let notification = { id, createdAt: Date.now() };
+  let notification = {
+    id,
+    createdAt: Date.now(),
+    title: "Title for Notification",
+    stats: 0,
+    status: "active",
+    type: "popup",
+  };
   let notifications = await getNotifications();
   notifications.unshift(notification);
   await set(notifications);
@@ -48,7 +55,7 @@ export async function createNotification() {
 export async function updateNotification(id, updates) {
   await fakeNetwork();
   let notifications = await localforage.getItem("notifications");
-  let notification = notifications.find(({id: _id}) => __filenameid === id);
+  let notification = notifications.find(({ id: _id }) => _id === id);
   if (!notification) throw new Error("No Notification found for", id);
   Object.assign(notification, updates);
   await set(notifications);

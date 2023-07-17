@@ -12,7 +12,7 @@ const informations = [
       <Link href="#">
         Explore Documentation <Icon icon="arrow" />
       </Link>
-    )
+    ),
   },
   {
     title: "Support",
@@ -22,7 +22,7 @@ const informations = [
       <Link href="#">
         Contact Support Team <Icon icon="arrow" />
       </Link>
-    )
+    ),
   },
   {
     title: "Video Tutorials",
@@ -32,13 +32,13 @@ const informations = [
       <Link href="#">
         Check Out Now <Icon icon="arrow" />
       </Link>
-    )
-  }
+    ),
+  },
 ];
 
 export default function Welcome() {
   return (
-    <div className="p-6 gap-8 flex flex-col">
+    <div className="p-6 gap-8 flex flex-col max-w-7xl mx-auto">
       <Introduction />
       <div className="flex gap-4">
         {informations.map(({ title, content, link }, index) => {
