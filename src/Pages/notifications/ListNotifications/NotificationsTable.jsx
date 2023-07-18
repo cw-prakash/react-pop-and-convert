@@ -11,7 +11,7 @@ export default function (props) {
   const [selectedNotifications, setSelectedNotifications] = useState([]);
 
   const [paginationSettings, setPaginationSettings] = useState({
-    itemsPerPage: 3,
+    itemsPerPage: 10,
     currentPage: 1,
   });
 
@@ -20,11 +20,11 @@ export default function (props) {
     toCopy.title = toCopy.title + " - Copy";
     toCopy.id = (Math.random() + 1).toString(36).substring(7);
 
-    onItemChange([...items, toCopy]);
+    // onItemChange([...items, toCopy]);
   };
 
   const handleDeleteAction = (id) => {
-    onItemChange(items.filter(({ id: _id }) => id !== _id));
+    // onItemChange(items.filter(({ id: _id }) => id !== _id));
   };
 
   const { itemsPerPage, currentPage } = paginationSettings;
@@ -92,29 +92,29 @@ export default function (props) {
                   />
                 </td>
                 <td className="py-4 px-6 text-left border-b">{title}</td>
-                <td className="py-4 px-6 text-left border-b">{type}</td>
+                <td className="py-4 px-6 text-left border-b"><span className={`py-1 px-2 rounded-2xl text-xs ${type === 'Sticky' && 'bg-purple-100'} ${type === 'Popup' && 'bg-teal-100'}`}>{type}</span></td>
                 <td className="py-4 px-6 text-left border-b">{stats}</td>
                 <td className="py-4 px-6 text-left border-b">
                   <input
                     type="checkbox"
                     checked={"active" === status}
                     onChange={() => {
-                      onItemChange(
-                        items.map((_notification) => {
-                          const { id: _id, status } = _notification;
-                          if (_id === id) {
-                            _notification.status =
-                              "active" === status ? "inactive" : "active";
-                          }
-                          return _notification;
-                        })
-                      );
+                      // onItemChange(
+                      //   items.map((_notification) => {
+                      //     const { id: _id, status } = _notification;
+                      //     if (_id === id) {
+                      //       _notification.status =
+                      //         "active" === status ? "inactive" : "active";
+                      //     }
+                      //     return _notification;
+                      //   })
+                      // );
                     }}
                     id="checkbox"
                   />
                 </td>
                 <td className="py-4 px-6 text-left border-b flex items-center gap-1">
-                  <Link to={`/notifications/${id}`}>
+                  <Link to={`/notifications/${id}/edit`}>
                     <Icon icon="pen" />
                   </Link>
                   <a href="#" onClick={() => handleCopyAction(id)}>

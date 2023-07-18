@@ -1,6 +1,6 @@
-export { default as Notifications } from "./ListNotifications";
-export { default as CreateNotification } from "./CreateNotification";
-export { default as EditNotification } from "./EditNotification";
-export { action as createAction } from "./CreateNotification";
+import { redirect } from "react-router-dom";
 
-export function loader() {}
+import { createNotification, getNotification, updateNotification } from "../../store";
+export { default as Notifications, loader as notificationsLoader } from "./ListNotifications";
+export { default as EditNotification, loader as editLoader, action as editAction } from "./EditNotification";
+export {default as CreateNotification, action as createAction} from "./Notification";

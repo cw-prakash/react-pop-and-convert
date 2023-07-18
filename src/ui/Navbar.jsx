@@ -20,7 +20,7 @@ export default function () {
           <img src={logo} />
         </RouterLink>
         <ul className="flex gap-3">
-          {navLinks.map(({ url, icon, index }) => (
+          {navLinks.map(({ url, icon }, index) => (
             <li
               key={index}
               className="flex h-11 w-11 rounded-full border-gray-200 border-solid border justify-center items-center hover:border-blue-500 hover:text-blue-500"

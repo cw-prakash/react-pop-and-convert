@@ -1,5 +1,6 @@
 import localforage from "localforage";
 import sortBy from "sort-by";
+import { matchSorter } from "match-sorter";
 
 let fakeCache = {};
 
@@ -19,32 +20,30 @@ async function fakeNetwork(key) {
 }
 
 export async function getNotifications(query) {
-  await fakeNetwork(`getNotifications:${query}`);
-  let notifications = await localforage.getItem("notifications");
+  await fakeNetwork(`getNotifications:notifications`);
+  let notifications = await localforage.getItem("notifications"); //
   if (!notifications) notifications = [];
   if (query) {
-    notifications = matchSorter(notifications, query);
+    notifications = matchSorter(notifications, query, { keys: ["title", "description"] });
   }
-  return notifications.sort(sortBy("last", "createdAt"));
+  return notifications.sort(sortBy("id", "createdAt"));
 }
 
 export async function getNotification(id) {
   await fakeNetwork(`notification:${id}`);
   let notifications = await localforage.getItem("notifications");
-  let notification = notifications.find(({ id: _id }) => _id === id);
+  let notification = notifications?.find(({ id: _id }) => _id === id);
   return notification ?? null;
 }
 
-export async function createNotification() {
+export async function createNotification(data) {
   await fakeNetwork();
   let id = Math.random().toString(36).substring(2, 9);
+
   let notification = {
     id,
     createdAt: Date.now(),
-    title: "Title for Notification",
-    stats: 0,
-    status: "active",
-    type: "popup",
+    ...data,
   };
   let notifications = await getNotifications();
   notifications.unshift(notification);

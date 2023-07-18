@@ -27,7 +27,7 @@ function Pagination(props) {
   });
 
   const offset = activePage * perPage - perPage;
-  const nextOffset = activePage * perPage;
+  const nextOffset = activePage * perPage > numberOfItems ? numberOfItems : activePage * perPage;
 
   return (
     <div className="flex gap-3 justify-between items-center">
